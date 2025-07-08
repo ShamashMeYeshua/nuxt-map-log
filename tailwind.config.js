@@ -1,11 +1,18 @@
+// tailwind.config.js
 module.exports = {
-  purge: [],
-  darkMode: false, // or 'media' or 'class'
+  content: [
+    "./components/**/*.{js,vue,ts}",
+    "./layouts/**/*.vue",
+    "./pages/**/*.vue",
+    "./plugins/**/*.{js,ts}",
+    "./app.vue",
+    "./error.vue",
+  ],
   theme: {
     extend: {},
   },
-  variants: {
-    extend: {},
+  plugins: [require("daisyui")],
+  daisyui: {
+    themes: ["light", "dark"], // Ensure desired themes are listed
   },
-  plugins: ['daisyui'],
-}
+};
