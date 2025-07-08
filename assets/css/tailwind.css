@@ -1,0 +1,10 @@
+/*
+ * Tailwind CSS
+ @import "@tailwindcss";
+@plugin "daisyui" {
+    themes: light --default, dark --prefersdark
+}
+
+ * https://tailwindcss.com/
+ */
+ 
