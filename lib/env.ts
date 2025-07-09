@@ -14,3 +14,5 @@ export type EnvSchema = z.infer<typeof envSchema>;
 tryParseEnv(envSchema);
 
 export default envSchema.parse(process.env);
+
+//ONE SMALL COMMENT
