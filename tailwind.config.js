@@ -9,7 +9,11 @@ module.exports = {
     "./error.vue",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        //error: 'hsl(0, 87%, 67%)', // Or your preferred red shade
+      },
+    },
   },
   plugins: [require("daisyui")],
   daisyui: {

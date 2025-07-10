@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { NuxtLink } from '#components';
+//import AuthButton from '../auth-button.vue';
 
 </script>
 
@@ -10,8 +11,7 @@ import { NuxtLink } from '#components';
         </div>
         <div class="navbar-end">
             <AppThemeToggle />
-            <a class="btn btn-accent">Sign In with Github
-                <Icon name="grommet-icons:github" size="24" /></a>
+            <AuthButton />
         </div>
     </div>
     
