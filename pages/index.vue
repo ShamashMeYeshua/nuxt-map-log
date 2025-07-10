@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import AuthButton from '~/components/auth-button.vue';
-
+const authStore = useAuthStore();
 </script>
 
 <template>
@@ -11,7 +11,8 @@ import AuthButton from '~/components/auth-button.vue';
             <p class="py-6">
                 Keep track of your adventures with Map Log, the ultimate tool for logging your journeys and exploring new places. Whether you're hiking, biking, or just wandering, Map Log helps you remember every step of the way.
             </p>
-            <AuthButton />
+            <AuthButton v-if="!authStore.user"/>
+            <NuxtLink v-else class="btn btn-primary" to="/dashboard">Start Logging</NuxtLink>
             </div>
         </div>
     </div>
