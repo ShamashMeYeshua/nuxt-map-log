@@ -1,5 +1,6 @@
 import { int, real, sqliteTable, text } from "drizzle-orm/sqlite-core";
-import  { createSelectSchema } from "drizzle-zod";
+import { createSelectSchema } from "drizzle-zod";
+
 import { user } from "./auth";
 
 export const location = sqliteTable("location", {
@@ -15,10 +16,10 @@ export const location = sqliteTable("location", {
 });
 
 export const InsertLocation = createSelectSchema(location, {
-    name: (field) => field.min(10).max(100),
-    description: (field) => field.max(1000),
-    lat: (field) => field.min(-90).max(90),
-    lng: (field) => field.min(-180).max(180),
+    name: field => field.min(10).max(100),
+    description: field => field.max(1000),
+    lat: field => field.min(-90).max(90),
+    lng: field => field.min(-180).max(180),
 }).omit({
     id: true,
     slug: true,

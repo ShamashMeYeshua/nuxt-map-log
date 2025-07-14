@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 const props = defineProps<{
     error?: string;
     label?: string;
@@ -8,35 +7,39 @@ const props = defineProps<{
     disabled?: boolean;
 }>();
 const asField = computed(() => {
-  if (props.type) {
-    if (props.type === "number") {
-      return "input";
+    if (props.type) {
+        if (props.type === "number") {
+            return "input";
+        }
+        else {
+            return props.type;
+        }
     }
     else {
-      return props.type;
+        return "input";
     }
-  }
-  else {
-    return "input";
-  }
 });
-
 </script>
 
 <template>
     <fieldset class="fieldset">
-        <legend class="fieldset-legend">{{props.label}}</legend>
-        <Field 
+        <legend class="fieldset-legend">
+            {{ props.label }}
+        </legend>
+        <Field
             :as="asField"
-            :name="props.name ?? ''" 
-            :type="type  || 'text'"
+            :name="props.name ?? ''"
+            :type="type || 'text'"
             :disabled="props.disabled"
-            class="w-full" 
+            class="w-full"
             :class="{
                 'input-error': props.error,
                 'input': !props.type || props.type === 'text' || props.type === 'number',
                 'textarea': props.type === 'textarea',
-                }" />
-        <p v-if="props.error" class="fieldset-label text-error">{{ props.error }}</p>
+            }"
+        />
+        <p v-if="props.error" class="fieldset-label text-error">
+            {{ props.error }}
+        </p>
     </fieldset>
 </template>

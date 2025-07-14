@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-
 const props = defineProps<{
     to?: string;
     label?: string;
@@ -8,18 +7,18 @@ const props = defineProps<{
 }>();
 
 const route = useRoute();
-
 </script>
 
 <template>
     <div class="tooltip tooltip-right" :data-tip="showLabel ? undefined : props.label">
-        <NuxtLink 
-            :class="{'bg-base-200': route.path === props.to, 'justify-center': !showLabel, 'justify-start': showLabel}" 
-            class="flex gap-2 p-2 hover:bg-base-300 hover:cursor-pointer" 
-            :to="props.to">
+        <NuxtLink
+            :class="{ 'bg-base-200': route.path === props.to, 'justify-center': !showLabel, 'justify-start': showLabel }"
+            class="flex gap-2 p-2 hover:bg-base-300 hover:cursor-pointer"
+            :to="props.to"
+        >
             <Icon :name="props.icon ?? ''" size="24" />
             <Transition name="grow">
-                <span v-if="props.showLabel">{{props.label}}</span>
+                <span v-if="props.showLabel">{{ props.label }}</span>
             </Transition>
         </NuxtLink>
     </div>
@@ -42,5 +41,4 @@ const route = useRoute();
         transform: scale(1);
     }
 }
-
 </style>

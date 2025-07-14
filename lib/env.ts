@@ -1,5 +1,7 @@
-import { z } from 'zod';
-import tryParseEnv from './try-parse-env';
+/* eslint-disable node/no-process-env */
+import { z } from "zod";
+
+import tryParseEnv from "./try-parse-env";
 
 const envSchema = z.object({
     NODE_ENV: z.string(),
@@ -14,7 +16,6 @@ const envSchema = z.object({
 export type EnvSchema = z.infer<typeof envSchema>;
 
 tryParseEnv(envSchema);
-
+/* eslint-disable node/prefer-global/process */
 export default envSchema.parse(process.env);
-
-//ONE SMALL COMMENT
+/* eslint-enable node/prefer-global/process */

@@ -1,9 +1,8 @@
-
 import { createAuthClient } from "better-auth/vue";
 
-const authClient =  createAuthClient()
+const authClient = createAuthClient();
 
-export const useAuthStore = defineStore('useAuthStore', () => {
+export const useAuthStore = defineStore("useAuthStore", () => {
     const session = ref<Awaited<ReturnType<typeof authClient.useSession>> | null>(null);
 
     async function init() {
@@ -16,28 +15,28 @@ export const useAuthStore = defineStore('useAuthStore', () => {
     async function signIn() {
         const { csrf } = useCsrf();
         const headers = new Headers();
-        headers.append('csrf-token', csrf);
-        //headers.append('X-CSRF-Token', csrf);
+        headers.append("csrf-token", csrf);
+        // headers.append('X-CSRF-Token', csrf);
         await authClient.signIn.social({
             provider: "github",
             callbackURL: "/dashboard",
             errorCallbackURL: "/error",
             fetchOptions: {
-                headers
-            }
+                headers,
+            },
         });
     }
 
     async function signOut() {
         const { csrf } = useCsrf();
         const headers = new Headers();
-        headers.append('csrf-token', csrf);
+        headers.append("csrf-token", csrf);
         await authClient.signOut({
             fetchOptions: {
-                headers
-            }
+                headers,
+            },
         });
-        navigateTo('/'); // Redirect to home page after sign out
+        navigateTo("/"); // Redirect to home page after sign out
     }
 
     return {
@@ -45,6 +44,6 @@ export const useAuthStore = defineStore('useAuthStore', () => {
         loading,
         signIn,
         signOut,
-        user
-  }
-})
+        user,
+    };
+});
