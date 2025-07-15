@@ -32,7 +32,7 @@ const onSubmit = handleSubmit(async (values) => {
         if (error.data?.data) {
             setErrors(error.data?.data);
         }
-        submitError.value = error.statusMessage || "An error occurred while adding the location.";
+        submitError.value = error.data?.statusMessage || error.statusMessage || "An error occurred while adding the location.";
     }
     // console.log('Form submitted:', submitError.value);
     loading.value = false;
