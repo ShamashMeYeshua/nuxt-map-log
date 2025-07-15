@@ -1,8 +1,16 @@
 <script setup lang="ts">
+import { useSidebarStore } from "~/stores/sidebar";
+
+const route = useRoute();
 const isSideBarOpen = ref(true);
+const sidebarStore = useSidebarStore();
+const locationsStore = useLocationStore();
 
 onMounted(() => {
     isSideBarOpen.value = localStorage.getItem("isSidebarOpen") === "true";
+    if (route.path !== "/dashboard") {
+        locationsStore.refresh();
+    }
 });
 
 function toggleSideBar() {
@@ -47,6 +55,20 @@ function toggleSideBar() {
                     label="Add Location"
                     icon="tabler:circle-plus-filled"
                 />
+                <div v-if="sidebarStore.loading || sidebarStore.sidebarItems.length" class="divider" />
+                <div v-if="sidebarStore.loading" class="px-4">
+                    <div class="skeleton h-4 w-full" />
+                </div>
+                <div v-if="!sidebarStore.loading && sidebarStore.sidebarItems.length" class="flex flex-col">
+                    <SidebarButton
+                        v-for="item in sidebarStore.sidebarItems"
+                        :key="item.id"
+                        :show-label="isSideBarOpen"
+                        :to="item.to"
+                        :label="item.label"
+                        :icon="item.icon"
+                    />
+                </div>
                 <div class="divider" />
                 <SidebarButton
                     :show-label="isSideBarOpen"
