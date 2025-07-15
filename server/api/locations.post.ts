@@ -61,11 +61,4 @@ export default defineEventHandler(async (event) => {
         }
         throw error;
     }
-/*     const [created] = await db.insert(location).values({
-      ...result.data,
-      slug: result.data.name.toLowerCase().replace(/\s+/g, '-'),
-      userId: event.context.user?.id || "",
-    }).returning;
-
-    return created; // Return validated data if successful
- */ });
+});
