@@ -18,6 +18,9 @@ const style = computed(() =>
     colorMode.value === "dark"
         ? "/styles/dark.json"
         : "https://tiles.openfreemap.org/styles/liberty");
+onMounted(() => {
+    mapStore.init();
+});
 </script>
 
 <template>
@@ -42,6 +45,11 @@ const style = computed(() =>
                     />
                 </div>
             </template>
+            <MglPopup>
+                <h3 class="text-2xl">
+                    {{ point.label }}
+                </h3>
+            </MglPopup>
         </MglMarker>
     </MglMap>
 </template>
