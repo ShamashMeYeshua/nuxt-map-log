@@ -6,7 +6,9 @@ import {
 } from "@indoorequal/vue-maplibre-gl";
 
 import { CENTER_BRASIL } from "~/lib/constants";
+import { useMapStore } from "~/stores/map";
 
+const mapStore = useMapStore();
 const center = CENTER_BRASIL;
 const zoom = 9;
 
@@ -25,5 +27,21 @@ const style = computed(() =>
         :zoom="zoom"
     >
         <MglNavigationControl />
+        <MglMarker
+            v-for="point in mapStore.mapPoints"
+            :key="point.id"
+            :coordinates="[point.lng, point.lat]"
+        >
+            <template #marker>
+                <!-- <div :style="{ backgroundColor: 'red', width: '10px', height: '10px' }" /> -->
+                <div class="tooltip tooltip-top" :data-tip="point.label">
+                    <Icon
+                        name="tabler:map-pin-filled"
+                        size="24"
+                        class="text-primary"
+                    />
+                </div>
+            </template>
+        </MglMarker>
     </MglMap>
 </template>
