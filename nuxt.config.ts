@@ -13,17 +13,38 @@ export default defineNuxtConfig({
         "@pinia/nuxt",
         "@vee-validate/nuxt",
         "nuxt-csurf",
+        "nuxt-maplibre",
+        "@nuxtjs/leaflet",
     ],
     eslint: {
         config: {
             standalone: false,
         },
     },
-    css: ["~/assets/css/app.css"],
-    vite: {
+    css: ["~/assets/css/app.css", "maplibre-gl/dist/maplibre-gl.css"],
+    /*     head: {
+        script: [
+            {
+                src: "https://unpkg.com/maplibre-gl@^5.6.1/dist/maplibre-gl.js",
+                defer: true, // Optional: defer script loading for better performance
+            },
+        ],
+        link: [
+            {
+                rel: "stylesheet",
+                href: "https://unpkg.com/maplibre-gl@^5.6.1/dist/maplibre-gl.css",
+            },
+        ],
+    },
+ */ vite: {
         plugins: [
             tailwindcss(),
         ],
+        optimizeDeps: {
+            include: [
+                "maplibre-gl",
+            ],
+        },
         server: {
             proxy: {
                 "/.well-known": {
