@@ -1,7 +1,18 @@
 import type { UserWithId } from "./auth";
 
 declare module "h3" {
-    type H3EventContext = {
+    // eslint-disable-next-line ts/consistent-type-definitions
+    interface H3EventContext {
         user?: UserWithId;
-    };
+    }
 }
+
+export type LatLongItem = {
+    lat: number;
+    lng: number;
+};
+
+export type MapPoint = {
+    id: number;
+    label: string;
+} & LatLongItem;
