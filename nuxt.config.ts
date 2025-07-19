@@ -14,7 +14,7 @@ export default defineNuxtConfig({
         "@vee-validate/nuxt",
         "nuxt-csurf",
         "nuxt-maplibre",
-        "@nuxtjs/leaflet",
+        //        "@nuxtjs/leaflet",
     ],
     eslint: {
         config: {
@@ -45,7 +45,7 @@ export default defineNuxtConfig({
                 "maplibre-gl",
             ],
         },
-        server: {
+        /*        server: {
             proxy: {
                 "/.well-known": {
                     target: "http://localhost:3000", // Default Nuxt dev server port
@@ -59,7 +59,7 @@ export default defineNuxtConfig({
                     },
                 },
             },
-        },
+        }, */
     },
     colorMode: {
         dataValue: "theme",

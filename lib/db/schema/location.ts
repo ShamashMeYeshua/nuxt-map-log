@@ -1,8 +1,9 @@
 import type { z } from "zod";
 
 import { int, real, sqliteTable, text, unique } from "drizzle-orm/sqlite-core";
-import { createSelectSchema } from "drizzle-zod";
+import { createInsertSchema } from "drizzle-zod";
 
+import { DescriptionSchema, LatSchema, LongSchema, NameSchema } from "../../zod-schemas";
 import { user } from "./auth";
 
 export const location = sqliteTable("location", {
@@ -19,11 +20,11 @@ export const location = sqliteTable("location", {
     unique().on(t.name, t.userId),
 ]);
 
-export const InsertLocation = createSelectSchema(location, {
-    name: field => field.min(10).max(100),
-    description: field => field.max(1000),
-    lat: field => field.min(-90).max(90),
-    lng: field => field.min(-180).max(180),
+export const InsertLocation = createInsertSchema(location, {
+    name: NameSchema,
+    description: DescriptionSchema,
+    lat: LatSchema,
+    lng: LongSchema,
 }).omit({
     id: true,
     slug: true,
@@ -33,3 +34,4 @@ export const InsertLocation = createSelectSchema(location, {
 });
 
 export type InsertLocation = z.infer<typeof InsertLocation>;
+export type SelectLocation = typeof location.$inferSelect;

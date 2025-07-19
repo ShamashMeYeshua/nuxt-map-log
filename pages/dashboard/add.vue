@@ -3,6 +3,8 @@ import type { FetchError } from "ofetch";
 
 import { toTypedSchema } from "@vee-validate/zod";
 
+import type { NominatimResult } from "~/lib/types";
+
 import { CENTER_ATLANTICO } from "~/lib/constants";
 import { InsertLocation } from "~/lib/db/schema";
 
@@ -51,6 +53,17 @@ function formatCoord(value?: number) {
         return 0;
     }
     return value.toFixed(7);
+}
+
+function searchResultSelected(result: NominatimResult) {
+    mapStore.addedPoint = {
+        id: result.place_id,
+        name: result.display_name,
+        description: "",
+        lat: Number(result.lat),
+        lng: Number(result.lon),
+    };
+    // console.log(result);
 }
 
 effect(() => {
@@ -157,6 +170,8 @@ onBeforeRouteLeave((to, from, next) => {
                     </button>
                 </div>
             </form>
+            <div class="divider" />
+            <AppPlaceSearch @result-selected="searchResultSelected" />
         </div>
     </div>
 </template>
