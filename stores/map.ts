@@ -38,7 +38,7 @@ export const useMapStore = defineStore("useMapStore", () => {
                 padding,
             });
         });
-
+        /*
         effect(() => {
             if (addedPoint.value) {
                 return;
@@ -58,7 +58,7 @@ export const useMapStore = defineStore("useMapStore", () => {
                 });
             }
         });
-
+ */
         watch(addedPoint, (newValue, oldValue) => {
             if ((newValue && !oldValue) || newValue?.centerMap) {
                 map.map?.flyTo ({
