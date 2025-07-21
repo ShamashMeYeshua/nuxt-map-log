@@ -57,7 +57,7 @@ function setLocation(result: NominatimResult) {
         <Form
             ref="form"
             v-slot="{ errors }"
-            class="flex flex-col items-center gap-2"
+            class="flex flex-col gap-2 items-center"
             :validation-schema="toTypedSchema(SearchSchema)"
             :initial-values="{ q: '' }"
             @submit="onSubmit"
@@ -69,17 +69,15 @@ function setLocation(result: NominatimResult) {
                         <Field
                             type="text"
                             name="q"
-                            placeholder="Search for a location"
+                            placeholder="Search for a location..."
                             :disabled="loading"
-                            :class="{
-                                'input-error': errors.q,
-                            }"
-                        /></label>
-                    <div v-if="errors.q" class="validator-hint text-error">
+                        />
+                    </label>
+                    <div v-if="errors.q" class="text-error validate-error">
                         {{ errors.q }}
                     </div>
                 </div>
-                <button class="btn btn-neutral join-item">
+                <button :disabled="loading" class="btn btn-neutral join-item">
                     Search
                 </button>
             </div>
@@ -101,7 +99,7 @@ function setLocation(result: NominatimResult) {
         <div v-if="loading" class="flex justify-center">
             <div class="loading loading-lg" />
         </div>
-        <div class="flex-flex-col overflow-auto gap-2 max-h-72 mt-2">
+        <div class="flex flex-col overflow-auto gap-2 max-h-60 mt-2">
             <div
                 v-for="result in searchResults"
                 :key="result.place_id"
@@ -112,8 +110,8 @@ function setLocation(result: NominatimResult) {
                         {{ result.display_name }}
                     </h4>
                     <div class="justify-end card-actions">
-                        <button class="btn btn-sm btn-primary" @submit="setLocation(result)">
-                            Set location
+                        <button class="btn btn-warning btn-sm" @click="setLocation(result)">
+                            Set Location
                             <Icon name="tabler:map-pin-share" size="20" />
                         </button>
                     </div>

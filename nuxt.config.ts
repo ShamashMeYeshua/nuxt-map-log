@@ -45,7 +45,7 @@ export default defineNuxtConfig({
                 "maplibre-gl",
             ],
         },
-        /*        server: {
+        server: {
             proxy: {
                 "/.well-known": {
                     target: "http://localhost:3000", // Default Nuxt dev server port
@@ -59,7 +59,7 @@ export default defineNuxtConfig({
                     },
                 },
             },
-        }, */
+        },
     },
     colorMode: {
         dataValue: "theme",
