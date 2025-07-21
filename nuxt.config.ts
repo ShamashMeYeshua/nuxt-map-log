@@ -14,7 +14,7 @@ export default defineNuxtConfig({
         "@vee-validate/nuxt",
         "nuxt-csurf",
         "nuxt-maplibre",
-        "@nuxtjs/leaflet",
+        //        "@nuxtjs/leaflet",
     ],
     eslint: {
         config: {
