@@ -1,4 +1,4 @@
-import type { RouteLocationNamedRaw } from "vue-router";
+import type { RouteLocationRaw } from "vue-router";
 
 import type { UserWithId } from "./auth";
 
@@ -18,7 +18,7 @@ export type MapPoint = {
     id: number;
     name: string;
     description: string | null;
-    to?: RouteLocationNamedRaw;
+    to?: RouteLocationRaw;
     toLabel?: string;
 } & LatLongItem;
 
