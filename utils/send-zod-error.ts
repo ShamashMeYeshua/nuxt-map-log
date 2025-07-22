@@ -1,5 +1,5 @@
 import type { H3Event } from "h3";
-import type { ZodError } from "zod/v4";
+import type { ZodError } from "zod";
 
 export default function sendZodError(event: H3Event, error: ZodError) {
     const statusMessage = error

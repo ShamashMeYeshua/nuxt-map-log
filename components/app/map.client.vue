@@ -67,7 +67,7 @@ onMounted(() => {
                         name="tabler:map-pin-filled"
                         size="35"
                         class="text-warning"
-                    />CENTER_ATLANTICO
+                    />
                 </div>
             </template>
         </MglMarker>
@@ -81,13 +81,15 @@ onMounted(() => {
                     class="tooltip tooltip-top hover:cursor-pointer"
                     :data-tip="point.name"
                     :class="{
-                        'tooltip-open': mapStore.selectedPoint === point,
+                        'tooltip-open': isPointSelected(point, mapStore.selectedPoint),
                     }"
+                    @mouseenter="mapStore.selectPointWithoutFlyTo(point)"
+                    @mouseleave="mapStore.selectPointWithoutFlyTo(null)"
                 >
                     <Icon
                         name="tabler:map-pin-filled"
                         size="24"
-                        :class="mapStore.selectedPoint === point ? 'text-accent' : 'text-primary'"
+                        :class="isPointSelected(point, mapStore.selectedPoint) ? 'text-accent' : 'text-primary'"
                     />
                 </div>
             </template>
@@ -98,6 +100,15 @@ onMounted(() => {
                 <p v-if="point.description">
                     {{ point.description }}
                 </p>
+                <div class="flex justify-end mt-4">
+                    <NuxtLink
+                        v-if="point.to"
+                        :to="point.to"
+                        class="btn btn-sm btn-outline"
+                    >
+                        {{ point.toLabel }}
+                    </NuxtLink>
+                </div>
             </MglPopup>
         </MglMarker>
     </MglMap>

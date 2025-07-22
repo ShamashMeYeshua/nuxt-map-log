@@ -1,3 +1,5 @@
+// import type { IncomingMessage, ServerResponse } from "node:http";
+
 import tailwindcss from "@tailwindcss/vite";
 
 import "./lib/env";
@@ -45,13 +47,13 @@ export default defineNuxtConfig({
                 "maplibre-gl",
             ],
         },
-        server: {
+        /*         server: {
             proxy: {
                 "/.well-known": {
                     target: "http://localhost:3000", // Default Nuxt dev server port
                     changeOrigin: true,
-                    bypass: (req, res) => {
-                        if (req.url.includes("com.chrome.devtools.json")) {
+                    bypass: (req: IncomingMessage, res: ServerResponse): boolean | void | undefined => {
+                        if (req.url && req.url.includes("com.chrome.devtools.json")) {
                             res.statusCode = 404; // Return 404 for this specific file
                             res.end();
                             return true; // Bypass Nuxt’s router
@@ -60,7 +62,7 @@ export default defineNuxtConfig({
                 },
             },
         },
-    },
+ */ },
     colorMode: {
         dataValue: "theme",
     },
