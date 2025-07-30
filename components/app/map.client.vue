@@ -83,8 +83,8 @@ onMounted(() => {
                     :class="{
                         'tooltip-open': isPointSelected(point, mapStore.selectedPoint),
                     }"
-                    @mouseenter="mapStore.selectPointWithoutFlyTo(point)"
-                    @mouseleave="mapStore.selectPointWithoutFlyTo(null)"
+                    @mouseenter="mapStore.selectedPoint = point"
+                    @mouseleave="mapStore.selectedPoint = null"
                 >
                     <Icon
                         name="tabler:map-pin-filled"
@@ -113,4 +113,3 @@ onMounted(() => {
         </MglMarker>
     </MglMap>
 </template>
-CENTER_ATLANTICO
