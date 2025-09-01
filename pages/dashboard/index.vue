@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 const locationsStore = useLocationStore();
-const { locations, locationStatus } = storeToRefs(locationsStore);
+const { locations, locationsStatus } = storeToRefs(locationsStore);
 const mapStore = useMapStore();
 
 onMounted(() => {
@@ -13,7 +13,7 @@ onMounted(() => {
         <h2 class="text-2x1">
             Locations
         </h2>
-        <div v-if="locationStatus === 'pending'">
+        <div v-if="locationsStatus === 'pending'">
             <span class="loading loading-spinner loading-xl" />
         </div>
         <div v-else-if="locations && locations.length > 0" class="flex flex-nowrap mt-4 gap-2 overflow-auto">

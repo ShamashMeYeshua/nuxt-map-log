@@ -28,7 +28,7 @@ export type NominatimResult = {
     osm_type: string;
     osm_id: number;
     lat: string;
-    lon: string;
+    lng: string;
     class: string;
     type: string;
     place_rank: number;
