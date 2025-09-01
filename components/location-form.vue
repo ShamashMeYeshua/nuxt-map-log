@@ -7,7 +7,8 @@ import type { NominatimResult } from "~/lib/types";
 
 import { CENTER_ATLANTICO } from "~/lib/constants";
 import { InsertLocation } from "~/lib/db/schema";
-// add a lame comment
+// add a lame comment again
+
 const props = defineProps<{
     initialValues?: InsertLocation | null;
     onSubmit: (location: InsertLocation) => Promise<any>;
