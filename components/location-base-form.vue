@@ -108,7 +108,7 @@ onBeforeRouteLeave(() => {
     <form class="flex flex-col gap-2" @submit.prevent="onSubmit">
         <slot :errors :loading />
         <p class="text-xs text-gray-400">
-            Current coordinates: {{ formatNumber(controlledValues.lat) }}, {{ formatNumber(controlledValues.long) }}
+            Current coordinates: {{ formatNumber(controlledValues.lat) }}, {{ formatNumber(controlledValues.lng) }}
         </p>
         <p>
             To set the coordinates:
